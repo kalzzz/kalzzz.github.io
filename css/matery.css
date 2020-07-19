@@ -32,9 +32,9 @@
         max-width: 1250px;
     }
 }
-
+#修改第一个颜色背景
 body {
-    background-color: #ffbd2e;
+    background-color: #ffffff;
     margin: 0;
     color: #34495e;
 }
@@ -267,7 +267,7 @@ mark {
 
 .bg-color {
     background-image: linear-gradient(to right, #304fbf 0%, #a0c3b2 80%);
-	opacity: 0.5;
+	opacity: 0;
 }
 
 .text-color {
