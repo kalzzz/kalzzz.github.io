@@ -474,7 +474,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    660
+                    645
                 </div>
                 
 
@@ -503,68 +503,70 @@
 <h2 id="简化的背包问题"><a href="#简化的背包问题" class="headerlink" title="简化的背包问题"></a>简化的背包问题</h2><blockquote>
 <p>我们只考虑从M件物品中取出n件物品放入背包，使得空间为W的背包里体积最大。</p>
 </blockquote>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><pre><code>    对于每件物品我们有两种选择，装进背包或者不装。对于n个物品，我们共有2^n种装法，去掉总体积超过W的，从剩下的找出最接近W的装法。
-    于是，我们可以通过回溯算法穷举2^n种装法，再进行适当的剪枝。</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>#include&lt;iostream&gt;
-using namespace std;
-int a[] = { 15, 6, 50,3,30,50 };
-int maxW = 0;
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><pre><code>    &gt;对于每件物品我们有两种选择，装进背包或者不装。对于n个物品，我们共有2^n种装法，去掉总体积超过W的，从剩下的找出最接近W的装法。
+    于是，我们可以通过回溯算法穷举2^n种装法，再进行适当的剪枝。</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">30</span><span class="token punctuation">,</span><span class="token number">50</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> maxW <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-void f(int i, int cw,int items[] , int n, int w)//i:第i件物品 cw:当前背包体积
-{
+<span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> cw<span class="token punctuation">,</span><span class="token keyword">int</span> items<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> w<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//i:第i件物品 cw:当前背包体积</span>
+<span class="token punctuation">{</span>
 
-    if ( cw==w || i == n)        //这里有剪枝，当cw==w时，不再遍历接下来的物品
-    {
-        if (cw &gt; maxW)
-            maxW = cw;
-        return;
-    }
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> cw<span class="token operator">==</span>w <span class="token operator">||</span> i <span class="token operator">==</span> n<span class="token punctuation">)</span>        <span class="token comment" spellcheck="true">//这里有剪枝，当cw==w时，不再遍历接下来的物品</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cw <span class="token operator">></span> maxW<span class="token punctuation">)</span>
+            maxW <span class="token operator">=</span> cw<span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    f(i + 1, cw,items,n, w);
-    if (cw + items[i] &lt;= w)
-    {
-        f(i + 1, cw + items[i], items, n, w);
-    }    
-}
+    <span class="token function">f</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> cw<span class="token punctuation">,</span>items<span class="token punctuation">,</span>n<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cw <span class="token operator">+</span> items<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> w<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">f</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> cw <span class="token operator">+</span> items<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> items<span class="token punctuation">,</span> n<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>    
+<span class="token punctuation">}</span>
 
-void main()
-{
-    f(0, 0, a, 6, 70);
-    printf(&quot;maxW:%d\n&quot;, maxW);
-    system(&quot;pause&quot;);
-}</code></pre><h2 id="一般的背包问题"><a href="#一般的背包问题" class="headerlink" title="一般的背包问题"></a>一般的背包问题</h2><pre><code>    我们给每个物品赋予了不同的价值，最后求背包里最大价值的装法。</code></pre><h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre><code>#include&lt;iostream&gt;
-using namespace std;
-int a[] = { 15, 6, 50,3,30,50 };
-int val[] = { 20, 40, 32, 44, 65, 32 };   //价值
-int maxV = 0;        //最大价值
-int maxW = 0;
-int m = 0;
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">70</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"maxW:%d\n"</span><span class="token punctuation">,</span> maxW<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="一般的背包问题"><a href="#一般的背包问题" class="headerlink" title="一般的背包问题"></a>一般的背包问题</h2><pre><code>    &gt;我们给每个物品赋予了不同的价值，最后求背包里最大价值的装法。</code></pre><h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">30</span><span class="token punctuation">,</span><span class="token number">50</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> val<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">,</span> <span class="token number">65</span><span class="token punctuation">,</span> <span class="token number">32</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">//价值</span>
+<span class="token keyword">int</span> maxV <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//最大价值</span>
+<span class="token keyword">int</span> maxW <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> m <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
-void f(int i, int cw, int cv,int items[] ,int val[], int n, int w) //加入了价值的数组val[]，当前的背包里物品价值cv。
-{    
-    if ( i == n)
-    {
-        printf(&quot;打印%d\n&quot;, ++m);
-        if (cv &gt; maxV)
-            maxV = cv;
-        if (cw &gt; maxW)
-            maxW = cw;
-        return;
-    }
+<span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> cw<span class="token punctuation">,</span> <span class="token keyword">int</span> cv<span class="token punctuation">,</span><span class="token keyword">int</span> items<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">,</span><span class="token keyword">int</span> val<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> w<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//加入了价值的数组val[]，当前的背包里物品价值cv。</span>
+<span class="token punctuation">{</span>    
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> i <span class="token operator">==</span> n<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"打印%d\n"</span><span class="token punctuation">,</span> <span class="token operator">++</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cv <span class="token operator">></span> maxV<span class="token punctuation">)</span>
+            maxV <span class="token operator">=</span> cv<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cw <span class="token operator">></span> maxW<span class="token punctuation">)</span>
+            maxW <span class="token operator">=</span> cw<span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 
-    f(i + 1, cw, cv,items, val,n, w);
-    if (cw + items[i] &lt;= w)
-    {
-        f(i + 1, cw + items[i], cv + val[i], items, val, n, w);
-    }    
-}
+    <span class="token function">f</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> cw<span class="token punctuation">,</span> cv<span class="token punctuation">,</span>items<span class="token punctuation">,</span> val<span class="token punctuation">,</span>n<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cw <span class="token operator">+</span> items<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;=</span> w<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token function">f</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> cw <span class="token operator">+</span> items<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> cv <span class="token operator">+</span> val<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> items<span class="token punctuation">,</span> val<span class="token punctuation">,</span> n<span class="token punctuation">,</span> w<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>    
+<span class="token punctuation">}</span>
 
-void main()
-{
-    f(0, 0,0, a,val, 6, 70);
-    printf(&quot;maxV:%d\n&quot;, maxV);
-    printf(&quot;maxW:%d\n&quot;, maxW);
-    system(&quot;pause&quot;);
-}</code></pre>
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span>val<span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">70</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"maxV:%d\n"</span><span class="token punctuation">,</span> maxV<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"maxW:%d\n"</span><span class="token punctuation">,</span> maxW<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
             </div>
             <hr/>
 
