@@ -512,8 +512,7 @@
 <span class="token keyword">int</span> maxW <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 
 <span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> cw<span class="token punctuation">,</span><span class="token keyword">int</span> items<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> w<span class="token punctuation">)</span><span class="token comment" spellcheck="true">//i:第i件物品 cw:当前背包体积</span>
-<span class="token punctuation">{</span>
-
+<span class="token punctuation">{</span>    
     <span class="token keyword">if</span> <span class="token punctuation">(</span> cw<span class="token operator">==</span>w <span class="token operator">||</span> i <span class="token operator">==</span> n<span class="token punctuation">)</span>        <span class="token comment" spellcheck="true">//这里有剪枝，当cw==w时，不再遍历接下来的物品</span>
     <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>cw <span class="token operator">></span> maxW<span class="token punctuation">)</span>
@@ -533,7 +532,7 @@
     <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">70</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"maxW:%d\n"</span><span class="token punctuation">,</span> maxW<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="一般的背包问题"><a href="#一般的背包问题" class="headerlink" title="一般的背包问题"></a>一般的背包问题</h2><blockquote>
 <p>我们给每个物品赋予了不同的价值，最后求背包里最大价值的装法。</p>
 </blockquote>
