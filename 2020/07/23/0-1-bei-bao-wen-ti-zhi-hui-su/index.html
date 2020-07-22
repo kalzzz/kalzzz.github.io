@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="八皇后问题, 新奇，探索，技术">
+    <meta name="keywords" content="0-1背包问题之回溯, 新奇，探索，技术">
     <meta name="description" content="此为kalzzz的个人博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>八皇后问题 | Kalzzz’s Blog</title>
+    <title>0-1背包问题之回溯 | Kalzzz’s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">八皇后问题</h1>
+                    <h1 class="description center-align post-title">0-1背包问题之回溯</h1>
                 </div>
             </div>
         </div>
@@ -460,21 +460,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-17
+                    2020-07-23
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-19
+                    2020-07-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    569
+                    660
                 </div>
                 
 
@@ -496,106 +496,75 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="八皇后问题"><a href="#八皇后问题" class="headerlink" title="八皇后问题"></a>八皇后问题</h1><blockquote>
-<p>八皇后问题（英文：Eight queens），是由国际西洋棋棋手马克斯·贝瑟尔于1848年提出的问题，是回溯算法的典型案例。<br>问题表述为：在8×8格的国际象棋上摆放8个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列或同一斜线上，问有多少种摆法。高斯认为有76种方案。1854年在柏林的象棋杂志上不同的作者发表了40种不同的解，后来有人用图论的方法解出92种结果。如果经过±90度、±180度旋转，和对角线对称变换的摆法看成一类，共有42类。计算机发明后，有多种计算机语言可以编程解决此问题。  - <a href="https://baike.baidu.com/item/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98" target="_blank" rel="noopener">百度百科</a></p>
+                <h1 id="回溯算法-0-1背包问题"><a href="#回溯算法-0-1背包问题" class="headerlink" title="回溯算法(0-1背包问题)"></a>回溯算法(0-1背包问题)</h1><blockquote>
+<p>0-1背包是在M件物品取出若干件放在空间为W的背包里，每件物品的体积为W1，W2至Wn，与之相对应的价值为P1,P2至Pn。01背包是背包问题中最简单的问题。01背包的约束条件是给定几种物品，每种物品有且只有一个，并且有权值和体积两个属性。在01背包问题中，因为每种物品只有一个，对于每个物品只需要考虑选与不选两种情况。如果不选择将其放入背包中，则不需要处理。如果选择将其放入背包中，由于不清楚之前放入的物品占据了多大的空间，需要枚举将这个物品放入背包后可能占据背包空间的所有情况。<a href="https://baike.baidu.com/item/01%E8%83%8C%E5%8C%85/4301245?fr=aladdin#reference-%5B1%5D-1731915-wrap" target="_blank" rel="noopener">百度百科</a></p>
 </blockquote>
 <hr>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
-<p>把八个皇后依次放入第一行至第八行，每到一行，便去遍历第一至第八列。若找到某列满足条件，不与前面几行的摆法相悖，则去下一行；若没找到，则回到上一行，继续遍历之后的列。<br>当找到一种摆法后，打印。此时不结束，return，继续查找下一种摆法，便可找出八皇后的全部摆法。</p>
+<h2 id="简化的背包问题"><a href="#简化的背包问题" class="headerlink" title="简化的背包问题"></a>简化的背包问题</h2><blockquote>
+<p>我们只考虑从M件物品中取出n件物品放入背包，使得空间为W的背包里体积最大。</p>
 </blockquote>
-<h2 id="C-代码实现"><a href="#C-代码实现" class="headerlink" title="C++代码实现"></a>C++代码实现</h2><pre class="line-numbers language-cpp"><code class="language-cpp">@code by kalzzz
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><pre><code>    对于每件物品我们有两种选择，装进背包或者不装。对于n个物品，我们共有2^n种装法，去掉总体积超过W的，从剩下的找出最接近W的装法。
+    于是，我们可以通过回溯算法穷举2^n种装法，再进行适当的剪枝。</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+int a[] = { 15, 6, 50,3,30,50 };
+int maxW = 0;
 
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> m <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+void f(int i, int cw,int items[] , int n, int w)//i:第i件物品 cw:当前背包体积
+{
 
-<span class="token keyword">class</span> <span class="token class-name">cal8Q</span>
-<span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token function">cal8Q</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">)</span><span class="token punctuation">;</span>                    
-    <span class="token keyword">bool</span> <span class="token function">isOk</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">,</span>  <span class="token keyword">int</span> column<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">void</span> <span class="token function">printQ</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    if ( cw==w || i == n)        //这里有剪枝，当cw==w时，不再遍历接下来的物品
+    {
+        if (cw &gt; maxW)
+            maxW = cw;
+        return;
+    }
 
-<span class="token keyword">private</span><span class="token operator">:</span>
-    <span class="token keyword">static</span> <span class="token keyword">int</span><span class="token operator">*</span> result <span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">//此处需是静态的成员</span>
-<span class="token comment" spellcheck="true">//    int* result = new int[8];    //不然每次进入构造函数，都会初始</span>
-                            <span class="token comment" spellcheck="true">//化一次result  &lt;-------------重要</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    f(i + 1, cw,items,n, w);
+    if (cw + items[i] &lt;= w)
+    {
+        f(i + 1, cw + items[i], items, n, w);
+    }    
+}
 
-cal8Q<span class="token operator">::</span><span class="token function">cal8Q</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">)</span>                <span class="token comment" spellcheck="true">//构造函数</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>row <span class="token operator">==</span> <span class="token number">8</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        m<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"==========第%d种解=========>\n"</span><span class="token punctuation">,</span> m<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">printQ</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+void main()
+{
+    f(0, 0, a, 6, 70);
+    printf(&quot;maxW:%d\n&quot;, maxW);
+    system(&quot;pause&quot;);
+}</code></pre><h2 id="一般的背包问题"><a href="#一般的背包问题" class="headerlink" title="一般的背包问题"></a>一般的背包问题</h2><pre><code>    我们给每个物品赋予了不同的价值，最后求背包里最大价值的装法。</code></pre><h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre><code>#include&lt;iostream&gt;
+using namespace std;
+int a[] = { 15, 6, 50,3,30,50 };
+int val[] = { 20, 40, 32, 44, 65, 32 };   //价值
+int maxV = 0;        //最大价值
+int maxW = 0;
+int m = 0;
 
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//---->此处激发回溯</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> column <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> column <span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">;</span> <span class="token operator">++</span>column<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isOk</span><span class="token punctuation">(</span>row<span class="token punctuation">,</span> column<span class="token punctuation">)</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            result<span class="token punctuation">[</span>row<span class="token punctuation">]</span> <span class="token operator">=</span> column<span class="token punctuation">;</span>
-            <span class="token function">cal8Q</span><span class="token punctuation">(</span>row <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">//此处不能写成row++</span>
-        <span class="token punctuation">}</span>        
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">//---->此处激发回溯</span>
-<span class="token punctuation">}</span>
+void f(int i, int cw, int cv,int items[] ,int val[], int n, int w) //加入了价值的数组val[]，当前的背包里物品价值cv。
+{    
+    if ( i == n)
+    {
+        printf(&quot;打印%d\n&quot;, ++m);
+        if (cv &gt; maxV)
+            maxV = cv;
+        if (cw &gt; maxW)
+            maxW = cw;
+        return;
+    }
 
-<span class="token keyword">bool</span> cal8Q<span class="token operator">::</span><span class="token function">isOk</span><span class="token punctuation">(</span><span class="token keyword">int</span> row<span class="token punctuation">,</span><span class="token keyword">int</span> column<span class="token punctuation">)</span>            <span class="token comment" spellcheck="true">//判断皇后是否应该</span>
-<span class="token punctuation">{</span>                                                <span class="token comment" spellcheck="true">//放在此处</span>
-    <span class="token keyword">int</span> leftup <span class="token operator">=</span> column <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    f(i + 1, cw, cv,items, val,n, w);
+    if (cw + items[i] &lt;= w)
+    {
+        f(i + 1, cw + items[i], cv + val[i], items, val, n, w);
+    }    
+}
 
-    <span class="token keyword">int</span> rightup <span class="token operator">=</span> column <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> row <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> column<span class="token punctuation">)</span> 
-            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>leftup <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> leftup<span class="token punctuation">)</span> 
-                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>rightup <span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> rightup<span class="token punctuation">)</span> 
-                <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-        <span class="token operator">--</span>leftup<span class="token punctuation">;</span>
-        <span class="token operator">++</span>rightup<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> cal8Q<span class="token operator">::</span><span class="token function">printQ</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>result<span class="token punctuation">)</span>                    <span class="token comment" spellcheck="true">//打印函数</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> row <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> row <span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">;</span> <span class="token operator">++</span>row<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> column <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> column <span class="token operator">&lt;</span> <span class="token number">8</span><span class="token punctuation">;</span> <span class="token operator">++</span>column<span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">[</span>row<span class="token punctuation">]</span> <span class="token operator">==</span> column<span class="token punctuation">)</span>
-            <span class="token punctuation">{</span>
-                <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Q "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-            <span class="token keyword">else</span>
-            <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"* "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">int</span><span class="token operator">*</span> cal8Q<span class="token operator">::</span>result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-
-<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    cal8Q <span class="token function">Q</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p><img src="/images/%E5%9B%9E%E6%BA%AF.png" alt="共92种解"></p>
-
+void main()
+{
+    f(0, 0,0, a,val, 6, 70);
+    printf(&quot;maxV:%d\n&quot;, maxV);
+    printf(&quot;maxW:%d\n&quot;, maxW);
+    system(&quot;pause&quot;);
+}</code></pre>
             </div>
             <hr/>
 
@@ -620,7 +589,7 @@ cal8Q<span class="token operator">::</span><span class="token function">cal8Q</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/kalzzz/kalzzz.github.io/2020/07/17/ba-huang-hou-wen-ti/">https://github.com/kalzzz/kalzzz.github.io/2020/07/17/ba-huang-hou-wen-ti/</a>
+                    <a href="https://github.com/kalzzz/kalzzz.github.io/2020/07/23/0-1-bei-bao-wen-ti-zhi-hui-su/">https://github.com/kalzzz/kalzzz.github.io/2020/07/23/0-1-bei-bao-wen-ti-zhi-hui-su/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -831,9 +800,10 @@ cal8Q<span class="token operator">::</span><span class="token function">cal8Q</s
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/07/23/0-1-bei-bao-wen-ti-zhi-hui-su/">
                     <div class="card-image">
@@ -852,9 +822,64 @@ cal8Q<span class="token operator">::</span><span class="token function">cal8Q</s
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-23
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构与算法
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">数据结构与算法</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%9E%E6%BA%AF%E6%80%9D%E6%83%B3/">
+                        <span class="chip bg-color">回溯思想</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/17/ba-huang-hou-wen-ti/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="八皇后问题">
+                        
+                        <span class="card-title">八皇后问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            八皇后问题
+八皇后问题（英文：Eight queens），是由国际西洋棋棋手马克斯·贝瑟尔于1848年提出的问题，是回溯算法的典型案例。问题表述为：在8×8格的国际象棋上摆放8个皇后，使其不能互相攻击，即任意两个皇后都不能处于同一行、同一列
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -878,43 +903,6 @@ cal8Q<span class="token operator">::</span><span class="token function">cal8Q</s
                         <span class="chip bg-color">回溯思想</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/07/16/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="哦哦哦的博客">
-                        
-                        <span class="card-title">哦哦哦的博客</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            kalzzz
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
