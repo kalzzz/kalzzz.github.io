@@ -474,7 +474,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    334
+                    452
                 </div>
                 
 
@@ -503,8 +503,47 @@
 <p>在用回溯思想解背包问题时，实际上就是<strong>穷举</strong>加<strong>剪枝</strong>，但是其时间复杂度为2^n。而动态规划则能以<strong>空间换时间</strong>，降低其时间复杂度，那么<strong>动态规划到底是如何降低背包问题的时间复杂度的呢</strong>？</p>
 </blockquote>
 <blockquote>
-<p>我们假设一个状态函数 f(a,b) ，a表示第a个物品，b表示当前背包里的重量，可以装入这个物品或不装入这个物品。现在有三个物品，重量分别为2、2、4。那么有下图<img src="/images/DP.jpeg" alt="状态图"><br>我们可以发现上图有两个 f(2,2)、两个 f(3,4) 。重复的状态只留下一个就行了，因为他们的子状态都是相同的。而动态规划则是过程中优化状态，去重的一种方法。<br>##思路<br>以上主要解释的动态规划的思想，接下来我们把它应用到背包问题上。假设n个物品，背包的重量不超过W，那我们把上图中的数据放到一个 n×w 的二维数组里面。用数组来表示唯一的状态。</p>
+<p>我们假设一个状态函数 f(a,b) ，a表示第a个物品，b表示当前背包里的重量，可以装入这个物品或不装入这个物品。现在有三个物品，重量分别为2、2、4。那么有下图<img src="/images/DP.jpeg" alt="状态图"><br>我们可以发现上图有两个 f(2,2)、两个 f(3,4) 。重复的状态只留下一个就行了，因为他们的子状态都是相同的。而动态规划则是过程中优化状态，去重的一种方法。 </p>
 </blockquote>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
+<p>以上主要解释的动态规划的思想，接下来我们把它应用到背包问题上。假设n个物品，背包的重量不超过W，那我们把上图中的数据放到一个 n×w 的二维数组里面。用数组来表示唯一的状态。</p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><blockquote>
+<p>把所有状态放进一个一维数组</p>
+</blockquote>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> num<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//只考虑最大重量</span>
+<span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//n=4为物品个数，w=5为背包最大载重</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">bool</span> a<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> state<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    state<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">></span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">5</span> <span class="token operator">-</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>state<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> state<span class="token punctuation">[</span>j <span class="token operator">+</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>state<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -808,24 +847,23 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="麦轮小车探究记录">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="麦轮小车的成长史">
                         
-                        <span class="card-title">麦轮小车探究记录</span>
+                        <span class="card-title">麦轮小车的成长史</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ##小车的成长史
-/*
+                            /*
 7.15
-        在程序上作修改，是D轮不接收PWM信号，让其失能。
+        在程序上作修改，使D轮不接收PWM信号，让其失能。
         发送前进命令式发现车子会往右前行进。
         提出方案：
             1、让A轮加速。
 
 7.18
- 
+        对A
                         
                     </div>
                     <div class="publish-info">
