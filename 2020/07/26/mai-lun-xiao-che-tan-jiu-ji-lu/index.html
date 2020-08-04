@@ -467,14 +467,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-26
+                    2020-08-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    305
+                    314
                 </div>
                 
 
@@ -501,14 +501,14 @@
         在程序上作修改，使D轮不接收PWM信号，让其失能。
         发送前进命令式发现车子会往右前行进。
         提出方案：
-            1、让A轮加速。
+            1、让A轮加速。  ->已解决
 
 7.18
         对A轮适当加速，发现车子会先向右前，而后向左前行进，出现过调节的现象
         发现我们需要动态的调节车轮的速度，使车子保持近似直线行进
         我们需要利用六轴传感器MPU6050的数据，对其分析
         提出方案：
-            1、通过小车的蓝牙，将传感器数据实时发送给上位机
+            1、通过小车的蓝牙，将传感器数据实时发送给上位机        ->已解决
 
 7.20
         争取加入UWB定位数据，将其与6050的数据融合
@@ -520,7 +520,7 @@
         提出方案：
             1、需要设计上位机程序，能够通过Labview，读取蓝牙接收的数据，并且解析，绘图显示出来
             2、上位机编写控制程序，分析下位机传来的数据，并给出四个轮子的精确控制量
-            3、修改小车程序，使其能够接收上位机发送来的每个轮所需要的精确控制量
+            3、修改小车程序，使其能够接收上位机发送来的每个轮所需要的精确控制量        ->已解决
 */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
