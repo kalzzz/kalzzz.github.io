@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="0-1背包问题之动态规划, 新奇，探索，技术">
+    <meta name="keywords" content="vector, 新奇，探索，技术">
     <meta name="description" content="此为kalzzz的个人博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>0-1背包问题之动态规划 | Kalzzz’s Blog</title>
+    <title>vector | Kalzzz’s Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">0-1背包问题之动态规划</h1>
+                    <h1 class="description center-align post-title">vector</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                <span class="chip bg-color">动态规划</span>
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
                             </a>
                         
-                            <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
-                                <span class="chip bg-color">背包问题</span>
+                            <a href="/tags/STL/">
+                                <span class="chip bg-color">STL</span>
                             </a>
                         
                     </div>
@@ -447,8 +447,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
-                                数据结构与算法
+                            <a href="/categories/STL/" class="post-category">
+                                STL
                             </a>
                         
                     </div>
@@ -460,21 +460,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-26
+                    2020-08-12
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-26
+                    2020-08-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    449
+                    255
                 </div>
                 
 
@@ -496,53 +496,41 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0-1背包问题之DP"><a href="#0-1背包问题之DP" class="headerlink" title="0-1背包问题之DP"></a>0-1背包问题之DP</h1><blockquote>
-<p>0-1背包问题的背景在之前讲过便不赘述了，这里附上链接—&gt;<a href="woshizhu.ml">0-1背包问题之回溯</a></p>
+                <h2 id="vector的初始化"><a href="#vector的初始化" class="headerlink" title="vector的初始化"></a>vector的初始化</h2><blockquote>
+<p><strong>第一二种类似</strong></p>
 </blockquote>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> values<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span> <span class="token number">99</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">//*****************第一种 把int类型的数组循环赋值给vector的索引</span>
+std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> simple<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>values<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>values<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+simple<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> values<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//*****************第二种 赋起始的指针</span>
+std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">simple</span><span class="token punctuation">(</span> values<span class="token punctuation">,</span> values<span class="token operator">+</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>values<span class="token punctuation">)</span><span class="token operator">/</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>values<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>在用回溯思想解背包问题时，实际上就是<strong>穷举</strong>加<strong>剪枝</strong>，但是其时间复杂度为2^n。而动态规划则能以<strong>空间换时间</strong>，降低其时间复杂度，那么<strong>动态规划到底是如何降低背包问题的时间复杂度的呢</strong>？</p>
+<p><strong>第三四种类似</strong></p>
 </blockquote>
+<pre><code>//*****************第三种 
+std::vector&lt;double&gt; v(50,3.14159)
+
+//*****************第四种 初始化了十个值为零的元素
+std::vector&lt;int&gt; v(10)</code></pre><h2 id="vector的访问"><a href="#vector的访问" class="headerlink" title="vector的访问"></a>vector的访问</h2><blockquote>
+<pre class="line-numbers language-cpp"><code class="language-cpp">a<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">/*指向第一个元素*/</span>   a<span class="token punctuation">.</span>front  <span class="token comment" spellcheck="true">/*引用第一个元素*/</span>
+a<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">5</span>  <span class="token comment" spellcheck="true">/*指向第六个元素*/</span>  a<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">/*访问第四个元素*/</span>
+a<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">4</span>  <span class="token comment" spellcheck="true">/*指向倒数第四个元素*/</span> a<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">/*引用索引位置为11的元素*/</span>
+a<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true">/*指向最后一个元素*/</span> a<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">/*引用最后一个元素*/</span>
+             <span class="token comment" spellcheck="true">//后面的元素</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h2 id="vector的迭代器"><a href="#vector的迭代器" class="headerlink" title="vector的迭代器"></a>vector的迭代器</h2><blockquote>
+<p><strong>正向：</strong><br><code>for(std::vector&lt;int&gt;)::iterator iter=pie.begin();iter!pies.end();iter++)</code></p>
 <blockquote>
-<p>我们假设一个状态函数 f(a,b) ，a表示第a个物品，b表示当前背包里的重量，可以装入这个物品或不装入这个物品。现在有三个物品，重量分别为2、2、4。那么有下图<img src="/images/DP.jpeg" alt="状态图"><br>我们可以发现上图有两个 f(2,2)、两个 f(3,4) 。重复的状态只留下一个就行了，因为他们的子状态都是相同的。而动态规划则是过程中优化状态，去重的一种方法。 </p>
+<p><strong>反向：</strong><br><code>for(std::vector&lt;int&gt;)::reverse_iterator iter=pie.rbegin();iter!pies.rend();iter++)</code></p>
 </blockquote>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><blockquote>
-<p>以上主要解释的动态规划的思想，接下来我们把它应用到背包问题上。假设n个物品，背包的重量不超过W，那我们把上图中的数据放到一个 n×w 的二维数组里面。用数组来表示唯一的状态。</p>
 </blockquote>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><blockquote>
-<p>把所有状态放进一个一维数组</p>
+<h2 id="vector的基本操作"><a href="#vector的基本操作" class="headerlink" title="vector的基本操作"></a>vector的基本操作</h2><blockquote>
+<p><code>push_back()</code><br><code>pop_back()</code><br><code>erase()</code><br><code>insert()</code><br><code>clear()</code></p>
 </blockquote>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> num<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">6</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//只考虑最大重量</span>
-<span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//n=4为物品个数，w=5为背包最大载重</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">bool</span> state<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    state<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">></span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">5</span> <span class="token operator">-</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> j <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
-        <span class="token punctuation">{</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span>state<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> state<span class="token punctuation">[</span>j <span class="token operator">+</span> num<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> i <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>state<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token keyword">return</span> i<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    cout <span class="token operator">&lt;&lt;</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
-    <span class="token function">system</span><span class="token punctuation">(</span><span class="token string">"pause"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -568,7 +556,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://github.com/kalzzz/kalzzz.github.io/2020/07/26/0-1-bei-bao-wen-ti-zhi-dong-tai-gui-hua/">https://github.com/kalzzz/kalzzz.github.io/2020/07/26/0-1-bei-bao-wen-ti-zhi-dong-tai-gui-hua/</a>
+                    <a href="https://github.com/kalzzz/kalzzz.github.io/2020/08/12/vector/">https://github.com/kalzzz/kalzzz.github.io/2020/08/12/vector/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -606,12 +594,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                    <span class="chip bg-color">动态规划</span>
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
                                 </a>
                             
-                                <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
-                                    <span class="chip bg-color">背包问题</span>
+                                <a href="/tags/STL/">
+                                    <span class="chip bg-color">STL</span>
                                 </a>
                             
                         </div>
@@ -779,9 +767,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/08/12/vector/">
                     <div class="card-image">
@@ -805,9 +794,9 @@ std::vector&lt;int> simple
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-08-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -820,6 +809,7 @@ std::vector&lt;int> simple
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -842,27 +832,23 @@ std::vector&lt;int> simple
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/26/mai-lun-xiao-che-tan-jiu-ji-lu/">
+                <a href="/2020/07/26/0-1-bei-bao-wen-ti-zhi-dong-tai-gui-hua/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="麦轮小车的成长史">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="0-1背包问题之动态规划">
                         
-                        <span class="card-title">麦轮小车的成长史</span>
+                        <span class="card-title">0-1背包问题之动态规划</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            /*
-7.15
-        在程序上作修改，使D轮不接收PWM信号，让其失能。
-        发送前进命令式发现车子会往右前行进。
-        提出方案：
-            1、让A轮加速。  ->已解决
+                            0-1背包问题之DP
+0-1背包问题的背景在之前讲过便不赘述了，这里附上链接—&gt;0-1背包问题之回溯
 
-7.18
-   
+
+在用回溯思想解背包问题时，实际上就是穷举加剪枝，但是其时间复杂度为2^n。而动态规划则能以空间换时间，降低其时间复杂度，那么动态
                         
                     </div>
                     <div class="publish-info">
@@ -873,8 +859,8 @@ std::vector&lt;int> simple
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/STM32/" class="post-category">
-                                    STM32
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构与算法
                                 </a>
                             
                             
@@ -884,12 +870,12 @@ std::vector&lt;int> simple
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
-                        <span class="chip bg-color">嵌入式</span>
+                    <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                        <span class="chip bg-color">动态规划</span>
                     </a>
                     
-                    <a href="/tags/%E9%BA%A6%E8%BD%AE%E5%B0%8F%E8%BD%A6/">
-                        <span class="chip bg-color">麦轮小车</span>
+                    <a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/">
+                        <span class="chip bg-color">背包问题</span>
                     </a>
                     
                 </div>
