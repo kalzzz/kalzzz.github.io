@@ -474,7 +474,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    255
+                    253
                 </div>
                 
 
@@ -511,11 +511,12 @@ std<span class="token operator">::</span>vector<span class="token operator">&lt;
 <blockquote>
 <p><strong>第三四种类似</strong></p>
 </blockquote>
-<pre><code>//*****************第三种 
-std::vector&lt;double&gt; v(50,3.14159)
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">//*****************第三种 </span>
+std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">double</span><span class="token operator">></span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span><span class="token number">3.14159</span><span class="token punctuation">)</span>
 
-//*****************第四种 初始化了十个值为零的元素
-std::vector&lt;int&gt; v(10)</code></pre><h2 id="vector的访问"><a href="#vector的访问" class="headerlink" title="vector的访问"></a>vector的访问</h2><blockquote>
+<span class="token comment" spellcheck="true">//*****************第四种 初始化了十个值为零的元素</span>
+std<span class="token operator">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span> <span class="token function">v</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="vector的访问"><a href="#vector的访问" class="headerlink" title="vector的访问"></a>vector的访问</h2><blockquote>
 <pre class="line-numbers language-cpp"><code class="language-cpp">a<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">/*指向第一个元素*/</span>   a<span class="token punctuation">.</span>front  <span class="token comment" spellcheck="true">/*引用第一个元素*/</span>
 a<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">5</span>  <span class="token comment" spellcheck="true">/*指向第六个元素*/</span>  a<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">/*访问第四个元素*/</span>
 a<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">4</span>  <span class="token comment" spellcheck="true">/*指向倒数第四个元素*/</span> a<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">/*引用索引位置为11的元素*/</span>
